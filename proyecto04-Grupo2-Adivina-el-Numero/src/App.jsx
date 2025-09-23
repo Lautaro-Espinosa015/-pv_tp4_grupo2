@@ -1,46 +1,54 @@
-import React from "react";
-import { useState } from "react";
+
+import React, { useState } from "react";
+import InputSection from "./components/InputSection"; // Componente para input y botones
+import Feedback from "./components/FeedBack"; // Componente para mensajes e intentos
+import "./App.css";
 
 function App() {
-  // Genera número aleatorio entre 1 y 100 al montar el componente
+  // Genera un número aleatorio entre 1 y 100 al iniciar el juego
   const [numeroSecreto] = useState(() => Math.floor(Math.random() * 100) + 1);
 
-  // Guarda lo que escribe el usuario en el input (cadena)
+  // Estado para guardar lo que escribe el usuario en el input
   const [intento, setIntento] = useState("");
 
-  // Mensaje de retroalimentación que se muestra al usuario (error, pista o acierto)
+  // Estado para mostrar mensajes de retroalimentación (acierto, error, pista, rendición)
   const [mensaje, setMensaje] = useState("");
 
-  // Contador de intentos realizados (se incrementa cada vez que el usuario presiona "Verificar")
+  // Contador de intentos realizados
   const [intentos, setIntentos] = useState(0);
 
-  // Booleano que indica si el usuario ya acertó el número
+  // Estado booleano: true si el usuario adivinó el número
   const [ganaste, setGanaste] = useState(false);
 
-  // Función que verifica el intento del usuario
-  const verificar = () => {
-    // Convierte la cadena intento a número entero usando base 10
-    const numero = parseInt(intento, 10);
+  // Estado booleano: true si el usuario se rinde
+  const [rendido, setRendido] = useState(false);
 
-    // Si la conversión no produce un número válido, muestra mensaje y sale
+  // Función que verifica el número ingresado por el usuario
+  const verificar = () => {
+    const numero = parseInt(intento, 10); // Convierte el input a número entero
+    
     if (isNaN(numero)) {
       setMensaje("Ingresa un número válido.");
       return;
     }
 
-    // Incrementa el contador de intentos con la forma funcional para evitar condiciones de carrera
+
+    // Incrementa el contador de intentos
     setIntentos((prev) => prev + 1);
 
-    // Comprueba rango 1-100 y avisa si está fuera (opcional pero útil)
+    // Validación: rango permitido 1-100
+
     if (numero < 1 || numero > 100) {
       setMensaje("El número debe estar entre 1 y 100.");
       return;
     }
 
-    // Compara el número ingresado con el número secreto y actualiza mensaje/estado
+
+    // Comparación con el número secreto
     if (numero === numeroSecreto) {
       setMensaje(`¡Acertaste! El número era ${numeroSecreto}.`);
-      setGanaste(true);
+      setGanaste(true); // Marca que el juego terminó con éxito
+
     } else if (numero < numeroSecreto) {
       setMensaje("Demasiado bajo, intenta con un número más alto.");
     } else {
@@ -48,32 +56,31 @@ function App() {
     }
   };
 
+
+  // Función que se ejecuta si el usuario se rinde
+  const rendirse = () => {
+    setMensaje(`Te rendiste. El número era ${numeroSecreto}.`);
+    setRendido(true); // Marca que el juego terminó por rendición
+  };
+
   return (
-    <div style={{ textAlign: "center", marginTop: "50px", fontFamily: "Arial" }}>
+    <div className="app-container">
       <h1>🎲 Adivina el número</h1>
       <p>Estoy pensando en un número entre 1 y 100</p>
 
-      {/* Si no has ganado, muestra el input y el botón para intentar */}
-      {!ganaste && (
-        <div>
-          <input
-            type="number"
-            // El input muestra el valor actual de intento (cadena)
-            value={intento}
-            // Al cambiar el input, actualiza intento con la cadena del input
-            onChange={(e) => setIntento(e.target.value)}
-            placeholder="Escribe tu número"
-          />
-          {/* Botón que llama a verificar al hacer click */}
-          <button onClick={verificar}>Verificar</button>
-        </div>
+      {/* Muestra el input y botones solo si el usuario no ganó ni se rindió */}
+      {!ganaste && !rendido && (
+        <InputSection
+          intento={intento}
+          setIntento={setIntento}
+          verificar={verificar}
+          rendirse={rendirse}
+        />
       )}
 
-      {/* Muestra siempre el mensaje de retroalimentación */}
-      <p>{mensaje}</p>
+      {/* Componente que muestra mensajes y, si corresponde, los intentos */}
+      <Feedback mensaje={mensaje} ganaste={ganaste} intentos={intentos} />
 
-      {/* Al ganar, muestra cuántos intentos se realizaron */}
-      {ganaste && <p>Intentos realizados: {intentos}</p>}
     </div>
   );
 }

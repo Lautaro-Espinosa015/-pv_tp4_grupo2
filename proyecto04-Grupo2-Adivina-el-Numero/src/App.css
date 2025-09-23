@@ -40,3 +40,53 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Estilos del juego  */
+.app-container {
+  text-align: center;
+  margin-top: 50px;
+  font-family: Arial, sans-serif;
+}
+
+.input-section {
+  margin-top: 20px;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.number-input {
+  padding: 8px 10px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  width: 180px;
+  font-size: 14px;
+}
+
+.btn {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.primary-btn {
+  background-color: #3b82f6; /* azul */
+  color: white;
+}
+.primary-btn:hover {
+  background-color: #2563eb;
+}
+.danger-btn {
+  background-color: #ef4444; /* rojo */
+  color: white;
+}
+.danger-btn:hover {
+  background-color: #dc2626;
+}
+
+.feedback {
+  margin-top: 16px;
+  min-height: 40px; /* evita saltos de layout cuando aún no hay mensaje */
+}
