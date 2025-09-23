@@ -78,3 +78,15 @@
 .primary-btn:hover {
   background-color: #2563eb;
 }
+.danger-btn {
+  background-color: #ef4444; /* rojo */
+  color: white;
+}
+.danger-btn:hover {
+  background-color: #dc2626;
+}
+
+.feedback {
+  margin-top: 16px;
+  min-height: 40px; /* evita saltos de layout cuando aún no hay mensaje */
+}
