@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import InputSection from "./components/InputSection"; // Componente para input y botones
 import Feedback from "./components/FeedBack"; // Componente para mensajes e intentos
@@ -25,32 +26,36 @@ function App() {
   // Función que verifica el número ingresado por el usuario
   const verificar = () => {
     const numero = parseInt(intento, 10); // Convierte el input a número entero
-
-    // Validación: si no es un número válido
+    
     if (isNaN(numero)) {
       setMensaje("Ingresa un número válido.");
       return;
     }
 
+
     // Incrementa el contador de intentos
     setIntentos((prev) => prev + 1);
 
     // Validación: rango permitido 1-100
+
     if (numero < 1 || numero > 100) {
       setMensaje("El número debe estar entre 1 y 100.");
       return;
     }
 
+
     // Comparación con el número secreto
     if (numero === numeroSecreto) {
       setMensaje(`¡Acertaste! El número era ${numeroSecreto}.`);
       setGanaste(true); // Marca que el juego terminó con éxito
+
     } else if (numero < numeroSecreto) {
       setMensaje("Demasiado bajo, intenta con un número más alto.");
     } else {
       setMensaje("Demasiado alto, intenta con un número más bajo.");
     }
   };
+
 
   // Función que se ejecuta si el usuario se rinde
   const rendirse = () => {
@@ -75,6 +80,7 @@ function App() {
 
       {/* Componente que muestra mensajes y, si corresponde, los intentos */}
       <Feedback mensaje={mensaje} ganaste={ganaste} intentos={intentos} />
+
     </div>
   );
 }
