@@ -1,0 +1,75 @@
+.colores-container {
+  padding: 20px;
+  text-align: center;
+  background-color: #5f009e;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.botones-colores-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+.color-box {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #333;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.color-box:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+.cambiar-colores-btn {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.cambiar-colores-btn:hover {
+  background-color: #45a049;
+}
+
+.botones-resultado {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.cambiar-colores-btn.danger-btn {
+  background-color: #c0392b;
+}
+.cambiar-colores-btn.danger-btn:hover {
+  background-color: #a93226;
+}
+
+/* --- Media Query para Responsividad --- */
+/* Estilos que se aplicarán en pantallas con un ancho máximo de 480px (móviles) */
+@media (max-width: 480px) {
+  .colores-container {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .color-box {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cambiar-colores-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
