@@ -1,0 +1,8 @@
+.saludo-container {
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+  color: #fff; 
+}
