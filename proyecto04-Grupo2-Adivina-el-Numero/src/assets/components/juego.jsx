@@ -1,9 +1,13 @@
+/*Imports de componentes*/
 import React, { useState } from "react";
 import InputSection from "./InputSection"; // Componente para input y botones
 import Feedback from "./FeedBack"; // Componente para mensajes e intentos
 import "./juego.css";
 
 function Juego() {
+  /* que es UseState y porque es importante: Es una función que te permite crear y manejar estados dentro de un componente funcional. 
+  Un “estado” es simplemente un valor que puede cambiar con el tiempo (como un contador, un texto, un booleano, etc.).
+ */
   // Genera un número aleatorio entre 1 y 100 al iniciar el juego
   const [numeroSecreto, setNumeroSecreto] = useState(() => Math.floor(Math.random() * 100) + 1);
 
@@ -27,7 +31,7 @@ function Juego() {
     const numero = parseInt(intento, 10); // Convierte el input a número entero
 
     if (isNaN(numero)) {
-      setMensaje("Ingresa un número válido.");
+      setMensaje("Ingresa un número válido."); // Fija mensaje de error
       return;
     }
 
@@ -68,6 +72,7 @@ function Juego() {
   };
 
   return (
+    /* seccion juego de html */
     <div className="juego-container">
       <h1>🎲 Adivina el número</h1>
       <p>Estoy pensando en un número entre 1 y 100</p>

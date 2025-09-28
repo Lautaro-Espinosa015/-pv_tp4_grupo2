@@ -89,6 +89,17 @@ function Colores() {
     cambiarColores();   // Realiza el siguiente giro
   };
 
+  /**useEffect permite ejecutar efectos secundarios en tus componentes, como escuchar eventos
+   * hacer peticiones a APIs, actualizar el DOM, o sincronizar estados.
+   * Este hook se ejecuta una sola vez al montar el componente
+    * y se limpia al desmontar el componente.
+    * Es ideal para manejar eventos globales como atajos de teclado.
+    * extra: un hook  te enganchan al ciclo de vida de React sin tener que usar clases. 
+    * Antes de los hooks, si querías manejar estado o efectos, tenías que usar componentes de clase (class Component). 
+    * Ahora, con hooks, podés hacerlo en componentes funcionales de forma más limpia y moderna.
+
+ */
+
   // useEffect para el código de trampa (presionar '4')
   useEffect(() => {
     const handleKeyDown = (event) => {
